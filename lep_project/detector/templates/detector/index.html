@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YOLO Detector</title>
+    <style>
+        body { font-family: sans-serif; margin: 40px; line-height: 1.6; }
+        .container { max-width: 1000px; margin: auto; }
+        .result-container { display: flex; gap: 20px; margin-top: 30px; flex-wrap: wrap; }
+        .image-box { border: 1px solid #ccc; padding: 10px; border-radius: 8px; }
+        img { max-width: 100%; height: auto; display: block; }
+        .error { color: red; font-weight: bold; }
+        .success { color: green; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Детектор объектов (YOLOv8 / YOLOv11)</h1>
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div style="margin-bottom: 15px;">
+                <label>Выберите изображение:</label>< base_dir
+                <input type="file" name="image" accept="image/*" required>
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <label>Выберите модель:</label>
+                <select name="model_choice">
+                    <option value="yolo8n" {% if model_used == 'yolo8n' %}selected{% endif %}>YOLOv8n</option>
+                    <option value="yolo11n" {% if model_used == 'yolo11n' %}selected{% endif %}>YOLOv11n</option>
+                </select>
+            </div>
+
+            <button type="submit" style="padding: 10px 20px; cursor: pointer;">Запустить анализ</button>
+        </form>
+
+        <hr style="margin: 40px 0;">
+
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+
+        {% if result_url %}
+            <h2 class="success">Анализ завершен!</h2>
+            <p>Использована модель: <strong>{{ model_used }}</strong></p>
+
+            <div class="result-container">
+                <div class="image-box">
+                    <h3>Результат детекции:</h3>
+                    <img src="{{ result_url }}" alt="Результат">
+                </div>
+
+                {% if original_url %}
+                <div class="image-box" style="max-width: 300px;">
+                    <h3>Оригинал:</h3>
+                    <img src="{{ original_url }}" alt="Оригинал" style="opacity: 0.6;">
+                </div>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
