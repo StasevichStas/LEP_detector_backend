@@ -1,0 +1,21 @@
+# Web Frameworks
+streamlit
+Django==5.2.10
+
+# Computer Vision & ML
+ultralytics
+torch
+torchvision
+opencv-python-headless
+pillow
+
+# Data Processing
+pandas
+numpy
+matplotlib
+seaborn
+
+# Utils
+python-dateutil
+requests
+tqdm
