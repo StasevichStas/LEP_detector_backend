@@ -1,12 +1,17 @@
 # ⚡ High-Voltage Power Line Monitoring System
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_svg.svg)](ССЫЛКА_НА_ТВОЕ_ДЕМО)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_svg.svg)]
 
 An automated AI-driven solution for monitoring power line infrastructure using state-of-the-art object detection models. This project focuses on identifying power towers, insulators, and detecting potential structural defects.
-
-
-> **<img width="1280" height="1280" alt="изображение" src="https://github.com/user-attachments/assets/270c049a-83e8-4dfc-a860-d56456e75514" />
-** Самый лучший результат детекции, где нейронка четко нашла изоляторы.
+<p><h2>Detection examples</h2></p>
+<p>
+<img src="detection_example/1.jpg" width="250">
+<img src="detection_example/detected_1.jpg" width="250">
+  </p>
+  <p>
+<img src="detection_example/2.jpg" width="250">
+<img src="detection_example/detected_2.jpg" width="250">
+</p>
 
 ## 🚀 Overview
 Manual inspection of power lines is dangerous and time-consuming. This project demonstrates how Computer Vision can automate the process, providing real-time detection and health monitoring of critical electrical infrastructure.
@@ -38,7 +43,6 @@ I evaluated two versions of the YOLO (You Only Look Once) architecture to find t
 * **Frameworks:** Python 3.10, PyTorch, Django 5.2.
 * **Computer Vision:** Ultralytics YOLOv8/v11, OpenCV.
 * **Deployment:** Streamlit Cloud (Demo), Mamba/Conda (Environment).
-* **Tools:** OS-level dependencies (libGL, libglib2.0) for cloud rendering.
 
 ## 📂 Project Structure
 ```text
@@ -48,3 +52,20 @@ I evaluated two versions of the YOLO (You Only Look Once) architecture to find t
 ├── requirements.txt     # Python dependencies for cloud deployment
 ├── packages.txt         # Linux system dependencies
 └── environment.yml      # Mamba/Conda environment configuration
+```
+
+## 💻 Getting Started
+1. Clone and Setup
+```
+git clone [https://github.com/stasevichstas/lep_project.git](https://github.com/stasevichstas/lep_project.git)
+cd lep_project
+
+mamba env create -f environment.yml
+mamba activate lep_monitoring
+```
+2. Run Streamlit Demo
+streamlit run lep_project/streamlit_demo/app.py
+3. Run Django Backend
+cd lep_project
+python manage.py migrate
+python manage.py runserver
