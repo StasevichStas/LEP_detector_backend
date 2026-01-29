@@ -30,15 +30,22 @@ I evaluated two versions of the YOLO (You Only Look Once) architecture to find t
 
 | Metric | YOLOv8n (Baseline) | YOLOv11n (Optimized) |
 | :--- | :---: | :---: |
-| **Model Weight (.pt)** | ~6.5 MB | **~5.8 MB** |
-| **mAP@50 (Accuracy)** | 0.XX | **0.XX** | 
-| **Inference Speed (CPU)** | ~18 FPS | **~26 FPS** |
-| **Best For** | Stability | Accuracy on small objects |
+| **Model Weight (.pt)** | ~6.2 MB | **~5.4 MB** |
+| **Precision** | 0.7937 | **0.7986** |
+| **Recall** | 0.5403 | **0.5545** |
+| **mAP@50** | 0.6033 | **0.6112** |
+| **mAP@50-95** | 0.4086 | **0.4202** |
+| **speed inference** | **85.6ms** | 89.9ms |
 
-> **ПОДСКАЗКА:** Замени 0.XX на реальные цифры mAP из твоего обучения (возьми из файла results.csv или results.png).
+Training and testing were conducted on CPU (AMD Ryzen 5 5600U)
 
+<img width="1390" height="590" alt="изображение" src="https://github.com/user-attachments/assets/da9d2a2b-a621-4492-8795-ac1ff53f3078" />
 
-> **СЮДА ПОСТАВЬ ФОТО:** Твой график обучения (results.png), чтобы показать, что модель реально обучалась.
+### 📈 Comparative Analysis: YOLOv8 vs YOLOv11  
+The training results demonstrate a clear advantage of the **YOLOv11n** architecture for this specific dataset:  
+- **Higher Precision & Recall:** YOLOv11n shows more stable growth and reaches higher peak values compared to YOLOv8n.  
+- **Superior mAP Performance:** The mAP@50 metrics confirm that YOLOv11n provides better overall localization and classification accuracy for power line components.
+- **Convergence:** YOLOv11n converges faster, showing better performance even in the early epochs.
 
 ## 🛠 Tech Stack
 * **Frameworks:** Python 3.10, PyTorch, Django 5.2.
