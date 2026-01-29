@@ -1,6 +1,5 @@
 import os
 import cv2
-import numpy as np
 from django.shortcuts import render
 from django.apps import apps
 from django.conf import settings
