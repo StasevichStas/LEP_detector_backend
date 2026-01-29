@@ -1,6 +1,7 @@
 # ⚡ High-Voltage Power Line Monitoring System
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_svg.svg)]
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_svg.svg)](https://lep-detector-mvp-v2.streamlit.app/) 
+> **🎯 Click the badge above or [click here](https://lep-detector-mvp-v2.streamlit.app/) to try the Live Demo!**
 
 An automated AI-driven solution for monitoring power line infrastructure using state-of-the-art object detection models. This project focuses on identifying power towers, insulators, and detecting potential structural defects.
 <p><h2>Detection examples</h2></p>
@@ -57,15 +58,22 @@ I evaluated two versions of the YOLO (You Only Look Once) architecture to find t
 ## 💻 Getting Started
 1. Clone and Setup
 ```
-git clone [https://github.com/stasevichstas/lep_project.git](https://github.com/stasevichstas/lep_project.git)
+git clone https://github.com/StasevichStas/LEP_detector_backend.git
 cd lep_project
 
 mamba env create -f environment.yml
 mamba activate lep_monitoring
 ```
 2. Run Streamlit Demo
+```
 streamlit run lep_project/streamlit_demo/app.py
-3. Run Django Backend
+```
+The screenshot below shows the model selection and the result of power line detection.
+<img width="592" height="736" alt="изображение" src="https://github.com/user-attachments/assets/c3a29bd9-bbbe-46d7-bfcc-ea7426079fb4" />
+
+4. Run Django Backend
+```
 cd lep_project
 python manage.py migrate
 python manage.py runserver
+```
