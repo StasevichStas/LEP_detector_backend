@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.apps import apps
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
+from .proccesor import task_queue
 
 
 def detect_objects(request):
@@ -11,35 +12,22 @@ def detect_objects(request):
     if request.method == "POST" and request.FILES.get("image"):
         img_file = request.FILES["image"]
         model_choice = request.POST.get("model_choice", "yolo8n")
-        app_config = apps.get_app_config("detector")
-
-        model = getattr(app_config, model_choice, None)
-
-        if model:
-            fs = FileSystemStorage()
-            filename = fs.save(img_file.name, img_file)
-            origin_path = fs.path(filename)
-            img = cv2.imread(origin_path)
-
-            results = model.predict(img, conf=0.25)
-            annotated_img = results[0].plot()
-
-            result_filename = f"detected_{filename}"
-            result_dir = os.path.join(settings.MEDIA_ROOT, "detections")
-            os.makedirs(result_dir, exist_ok=True)
-
-            result_path = os.path.join(result_dir, result_filename)
-            cv2.imwrite(result_path, annotated_img)
-
-            context["original_url"] = fs.url(filename)
-            context["result_url"] = (
-                f"{settings.MEDIA_URL}detections/{result_filename}"
-            )
-            context["model_used"] = model_choice
-        else:
-            context["error"] = "Модель не загружена."
-
+        fs = FileSystemStorage()
+        filename = fs.save(img_file.name, img_file)
+        origin_path = fs.path(filename)
+        result_filename = f"detected_{filename}"
+        result_path = os.path.join(
+            settings.MEDIA_ROOT, "detections", result_filename
+        )
+        task_queue.put((origin_path, result_path, model_choice))
+        context["original_url"] = fs.url(filename)
+        context["result_url"] = (
+            f"{settings.MEDIA_URL}detections/{result_filename}" 
+        )
+        context["model_used"] = model_choice
+        context["status"] = "Processing"
         return render(request, "detector/index.html", context)
+    return render(request, "detector/index.html")
 
 
 def index(request):
