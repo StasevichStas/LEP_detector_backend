@@ -54,18 +54,6 @@
           <label>Выберите модель:</label>
           <select name="model_choice">
             <option
-              value="yolo8n"
-              {%
-              if
-              model_used=""
-              ="yolo8n"
-              %}selected{%
-              endif
-              %}
-            >
-              YOLOv8n
-            </option>
-            <option
               value="yolo11n"
               {%
               if
@@ -76,6 +64,18 @@
               %}
             >
               YOLOv11n
+            </option>
+            <option
+              value="yolo11m"
+              {%
+              if
+              model_used=""
+              ="yolo11m"
+              %}selected{%
+              endif
+              %}
+            >
+              YOLOv11m
             </option>
           </select>
         </div>

@@ -15,12 +15,8 @@ st.title("Детектор объектов ЛЭП ⚡")
 def get_resources():
     base_dir = Path(__file__).resolve().parent.parent
     models = {
-        "YOLOv8n": YOLO(
-            os.path.join(base_dir, "ml_models", "best_weight_yolo8n.pt")
-        ),
-        "YOLOv11n": YOLO(
-            os.path.join(base_dir, "ml_models", "best_weight_yolo11n.pt")
-        ),
+        "YOLOv11n": YOLO(os.path.join(base_dir, "ml_models", "yolo11n.pt")),
+        "YOLOv11m": YOLO(os.path.join(base_dir, "ml_models", "yolo11m.pt")),
     }
     q = queue.Queue()
     return models, q, base_dir
@@ -53,15 +49,19 @@ def start_global_worker():
     return t
 
 
+model_options = {
+    "YOLOv11n": "🚀 YOLOv11n — Максимальная скорость",
+    "YOLOv11m": "🎯 YOLOv11m — Высокая точность",
+}
+
 start_global_worker()
 col1, col2 = st.columns([2, 1])
 with col1:
     model_type = st.selectbox(
         "Выберите архитектуру нейросети",
-        ["YOLOv8n", "YOLOv11n"],
-        help="YOLOv8n лучше находит гнезда на траверсах и кучи веток, "
-        "но во всём остальном рекомендуем использовать YOLOv11n, "
-        "чаще всего он дает результат чуть по лучше",
+        options=list(model_options.keys()),
+        format_func=lambda x: model_options[x],
+        help="Выберите 'n' для работы в реальном времени или 'm' для детального анализа.",
     )
     conf = st.slider(
         "Выберите confidence нейросети",
@@ -69,7 +69,7 @@ with col1:
         max_value=1.0,
         value=0.25,
         step=0.1,
-        help="Чем выше порог, тем меньше 'ложных' срабатываний," \
+        help="Чем выше порог, тем меньше 'ложных' срабатываний,"
         " но модель может пропустить реальные объекты.",
     )
     uploaded_file = st.file_uploader(
@@ -106,6 +106,6 @@ with col2:
         base_dir, "streamlit_demo", "assets", "category.png"
     )
     if os.path.exists(path_img_category):
-        st.image(path_img_category, width='content')
+        st.image(path_img_category, width="content")
     else:
         st.warning("Файл с таблицей не найден")

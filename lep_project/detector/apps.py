@@ -12,11 +12,11 @@ class DetectorConfig(AppConfig):
     def ready(self):
         if os.environ.get("RUN_MAIN") == "true":
             base_dir = settings.BASE_DIR
-            yolo8n_path = os.path.join(
-                base_dir, "ml_models", "best_weight_yolo8n.pt"
-            )
             yolo11n_path = os.path.join(
-                base_dir, "ml_models", "best_weight_yolo11n.pt"
+                base_dir, "ml_models", "yolo11n.pt"
             )
-            self.yolo8n = YOLO(yolo8n_path)
+            yolo11m_path = os.path.join(
+                base_dir, "ml_models", "yolo11m.pt"
+            )
             self.yolo11n = YOLO(yolo11n_path)
+            self.yolo11m = YOLO(yolo11m_path)

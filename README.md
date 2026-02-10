@@ -20,7 +20,7 @@ Manual inspection of power lines is dangerous and time-consuming. This project d
 ### Key Features
 * **Multi-Object Detection:** Real-time localization of transmission towers and insulators.
 * **Fault Identification:** Specifically trained to recognize damaged components and environmental risks.
-* **Dual-Model Comparison:** Implementation and testing of both **YOLOv8n** and the latest **YOLOv11n** architectures.
+* **Dual-Model Comparison:** Implementation and testing of both **YOLOv11n** and the latest **YOLOv11m** architectures.
 * **Interactive Web UI:** A user-friendly Streamlit interface for quick image inference and testing.
 * **Django Backend:** Scalable architecture for future API integration and data management.
 
@@ -30,31 +30,30 @@ I evaluated two versions of the YOLO (You Only Look Once) architecture to find t
 
 | Metric | YOLOv8n (Baseline) | YOLOv11n (Optimized) |
 | :--- | :---: | :---: |
-| **Model Weight (.pt)** | ~6.2 MB | **~5.4 MB** |
-| **Precision** | 0.7937 | **0.7986** |
-| **Recall** | 0.5403 | **0.5545** |
-| **mAP@50** | 0.6033 | **0.6112** |
-| **mAP@50-95** | 0.4086 | **0.4202** |
-| **speed inference** | **85.6ms** | 89.9ms |
+| **GFLOPs** | **6.6** | 71.4 |
+| **Precision** | 0.7581 | **0.8527** |
+| **Recall** | 0.6555 | **0.7816** |
+| **mAP@50** | 0.6977 | **0.8356** |
+| **mAP@50-95** | 0.5043 | **0.6258** |
+| **speed inference** | **0.7ms** | 3.0ms |
 
-Training and testing were conducted on CPU (AMD Ryzen 5 5600U)
+Training and testing were conducted on GPU (NVIDIA GeForce RTX 4090)
 
 <img width="1390" height="590" alt="изображение" src="https://github.com/user-attachments/assets/da9d2a2b-a621-4492-8795-ac1ff53f3078" />
 
-### 📈 Comparative Analysis: YOLOv8 vs YOLOv11  
+### 📈 Comparative Analysis: YOLOv11n vs YOLOv11m  
 The training results demonstrate a clear advantage of the **YOLOv11n** architecture for this specific dataset:  
-- **Higher Precision & Recall:** YOLOv11n shows more stable growth and reaches higher peak values compared to YOLOv8n.  
-- **Superior mAP Performance:** The mAP@50 metrics confirm that YOLOv11n provides better overall localization and classification accuracy for power line components.
-- **Convergence:** YOLOv11n converges faster, showing better performance even in the early epochs.
+- **Higher Precision & Recall:** YOLOv11m shows more stable growth and reaches higher peak values compared to YOLOv11n.  
+- **Superior mAP Performance:** The mAP@50 metrics confirm that YOLOv11m provides better overall localization and classification accuracy for power line components.
 
 ## 🛠 Tech Stack
 * **Frameworks:** Python 3.10, PyTorch, Django 5.2.
-* **Computer Vision:** Ultralytics YOLOv8/v11, OpenCV.
-* **Deployment:** Streamlit Cloud (Demo), Mamba/Conda (Environment).
+* **Computer Vision:** Ultralytics YOLOv11, OpenCV.
+* **Deployment:** Streamlit Cloud (Demo), Mamba (Environment).
 
 ## 📂 Project Structure
 ```text
-├── ml_models/           # Pre-trained weights (.pt) for v8 and v11
+├── ml_models/           # Pre-trained weights (.pt) for v11n and v11m
 ├── streamlit_demo/      # Interactive demo application
 ├── lep_project/         # Django project core & detector app
 ├── requirements.txt     # Python dependencies for cloud deployment

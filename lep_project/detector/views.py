@@ -11,7 +11,7 @@ def detect_objects(request):
     context = {}
     if request.method == "POST" and request.FILES.get("image"):
         img_file = request.FILES["image"]
-        model_choice = request.POST.get("model_choice", "yolo8n")
+        model_choice = request.POST.get("model_choice", "yolo11n")
         fs = FileSystemStorage()
         filename = fs.save(img_file.name, img_file)
         origin_path = fs.path(filename)
