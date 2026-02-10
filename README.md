@@ -39,7 +39,7 @@ I evaluated two versions of the YOLO (You Only Look Once) architecture to find t
 
 Training and testing were conducted on GPU (NVIDIA GeForce RTX 4090)
 
-<img width="1390" height="590" alt="изображение" src="https://github.com/user-attachments/assets/da9d2a2b-a621-4492-8795-ac1ff53f3078" />
+<img width="1389" height="590" alt="image" src="https://github.com/user-attachments/assets/60f783d1-0675-456f-9a86-ea7a488ef197" />
 
 ### 📈 Comparative Analysis: YOLOv11n vs YOLOv11m  
 The training results demonstrate a clear advantage of the **YOLOv11n** architecture for this specific dataset:  
