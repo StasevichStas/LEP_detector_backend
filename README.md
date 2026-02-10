@@ -10,7 +10,7 @@ An automated AI-driven solution for monitoring power line infrastructure using s
 <img src="detection_example/1_det.jpg" width="250">
   </p>
   <p>
-<img src="detection_example/2.jpg" width="250">
+<img src="detection_example/2.JPG" width="250">
 <img src="detection_example/2_det.jpg" width="250">
 </p>
 
@@ -75,7 +75,8 @@ mamba activate lep_monitoring
 streamlit run lep_project/streamlit_demo/app.py
 ```
 The screenshot below shows the model selection and the result of power line detection.
-<img width="592" height="736" alt="изображение" src="https://github.com/user-attachments/assets/c3a29bd9-bbbe-46d7-bfcc-ea7426079fb4" />
+<img width="1799" height="874" alt="image" src="https://github.com/user-attachments/assets/14d37c99-800e-4e02-8769-a09b9df6f115" />
+
 
 4. Run Django Backend
 ```
