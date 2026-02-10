@@ -1,17 +1,17 @@
 # ⚡ High-Voltage Power Line Monitoring System
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_svg.svg)](https://lep-detector-mvp-v2.streamlit.app/) 
+[Streamlit App](https://lep-detector-mvp-v2.streamlit.app/) 
 > **🎯 Click the badge above or [click here](https://lep-detector-mvp-v2.streamlit.app/) to try the Live Demo!**
 
 An automated AI-driven solution for monitoring power line infrastructure using state-of-the-art object detection models. This project focuses on identifying power towers, insulators, and detecting potential structural defects.
 <p><h2>Detection examples</h2></p>
 <p>
 <img src="detection_example/1.jpg" width="250">
-<img src="detection_example/detected_1.jpg" width="250">
+<img src="detection_example/1_det.jpg" width="250">
   </p>
   <p>
 <img src="detection_example/2.jpg" width="250">
-<img src="detection_example/detected_2.jpg" width="250">
+<img src="detection_example/2_det.jpg" width="250">
 </p>
 
 ## 🚀 Overview
